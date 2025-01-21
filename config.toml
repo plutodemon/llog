@@ -1,0 +1,57 @@
+# 日志基础配置
+console = true            # 是否输出到控制台
+file = true               # 是否输出到文件
+file_path = "logs"        # 日志文件路径
+max_size = 64             # 每个日志文件的最大大小（MB）
+max_age = 7               # 保留旧日志文件的最大天数
+max_backups = 30          # 保留的旧日志文件的最大数量
+compress = true           # 是否压缩旧日志文件
+local_time = true         # 是否使用本地时间
+format = "%s.log"         # 日志文件名格式（使用日期格式化）
+level = "info"            # 日志级别 (debug/info/warn/error/fatal)
+output_format = "json"    # 输出格式 (text/json)
+
+# 错误日志服务器配置（支持多个服务器）
+# [[error_servers]]
+# url = "http://log-server1:8080/api/logs"   # 主服务器地址
+# min_level = "error"                        # 最小日志级别 (debug/info/warn/error/fatal)
+# timeout = 5                                # HTTP请求超时时间（秒）
+# retry = 3                                  # 发送失败时的重试次数
+# batch_size = 100                           # 批量发送的日志条数
+# enabled = true                             # 是否启用此服务器
+
+# 开发环境配置示例
+# [dev]
+# is_dev = true
+# level = "debug"
+# console = true
+# file = true
+# file_path = "logs/dev"
+# compress = false
+# 
+# [[dev.error_servers]]
+# url = "http://localhost:8080/logs"
+# min_level = "debug"
+# timeout = 1
+# retry = 1
+# batch_size = 1
+# enabled = true
+
+# 生产环境配置示例
+# [prod]
+# is_dev = false
+# level = "info"
+# console = false
+# file = true
+# file_path = "/var/log/app"
+# compress = true
+# max_size = 100
+# max_backups = 50
+# 
+# [[prod.error_servers]]
+# url = "http://log-server:8080/logs"
+# min_level = "error"
+# timeout = 5
+# retry = 3
+# batch_size = 100
+# enabled = true 
