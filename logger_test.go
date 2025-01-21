@@ -1,4 +1,4 @@
-package slog
+package llog
 
 import (
 	"encoding/json"
@@ -74,7 +74,7 @@ func (ts *testLogServer) getLogs() []*LogEntry {
 // 测试初始化配置
 func TestInit(t *testing.T) {
 	// 创建临时目录
-	tempDir, err := os.MkdirTemp("", "slog_test_*")
+	tempDir, err := os.MkdirTemp("", "llog_test_*")
 	if err != nil {
 		t.Fatalf("创建临时目录失败: %v", err)
 	}
@@ -115,7 +115,7 @@ func TestLogLevelsAndServer(t *testing.T) {
 	defer ts.close()
 
 	// 创建临时目录
-	tempDir, err := os.MkdirTemp("", "slog_test_*")
+	tempDir, err := os.MkdirTemp("", "llog_test_*")
 	if err != nil {
 		t.Fatalf("创建临时目录失败: %v", err)
 	}
@@ -223,7 +223,7 @@ func TestBatchSending(t *testing.T) {
 
 // 测试文件轮转
 func TestLogRotation(t *testing.T) {
-	tempDir, err := os.MkdirTemp("", "slog_test_*")
+	tempDir, err := os.MkdirTemp("", "llog_test_*")
 	if err != nil {
 		t.Fatalf("创建临时目录失败: %v", err)
 	}

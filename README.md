@@ -1,4 +1,4 @@
-# slog
+# llog
 
 基于 [go.uber.org/zap](https://github.com/uber-go/zap) 日志库的封装，提供了简单的配置方式
 
@@ -16,7 +16,7 @@
 ## 安装
 
 ```bash
-go get github.com/plutodemon/slog
+go get github.com/plutodemon/llog
 ```
 
 ## 配置说明
@@ -54,12 +54,12 @@ enabled = true                       # 是否启用此服务器
 package main
 
 import (
-	"github.com/plutodemon/slog"
+	"github.com/plutodemon/llog"
 )
 
 func main() {
 	// 初始化日志配置
-	config := &slog.LogSetting{
+	config := &llog.LogSetting{
 		Console:      true,
 		File:         true,
 		FilePath:     "logs",
@@ -67,32 +67,32 @@ func main() {
 		OutputFormat: "json",
 	}
 
-	err := slog.Init(config)
+	err := llog.Init(config)
 	if err != nil {
 		panic(err)
 	}
-	defer slog.Cleanup()
+	defer llog.Cleanup()
 
 	// 使用defer处理panic
-	defer slog.HandlePanic()
+	defer llog.HandlePanic()
 
 	// 记录不同级别的日志
-	slog.Debug("这是一条调试日志")
-	slog.Info("这是一条信息日志")
-	slog.Warn("这是一条警告日志")
-	slog.Error("这是一条错误日志")
+	llog.Debug("这是一条调试日志")
+	llog.Info("这是一条信息日志")
+	llog.Warn("这是一条警告日志")
+	llog.Error("这是一条错误日志")
 
 	// 格式化日志
-	slog.InfoF("用户 %s 登录成功", "张三")
-	slog.ErrorF("处理失败: %v", err)
+	llog.InfoF("用户 %s 登录成功", "张三")
+	llog.ErrorF("处理失败: %v", err)
 }
 
 ```
 
 ## 注意事项
 
-1. 在程序退出前调用`slog.Cleanup()`确保日志被正确写入
-2. 使用`slog.HandlePanic()`可以自动捕获和记录panic
+1. 在程序退出前调用`llog.Cleanup()`确保日志被正确写入
+2. 使用`llog.HandlePanic()`可以自动捕获和记录panic
 3. 错误日志服务器配置是可选的，可以配置多个服务器
 4. 日志文件会自动按照配置的大小进行轮转
 5. 支持开发环境和生产环境的不同配置

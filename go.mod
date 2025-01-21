@@ -1,4 +1,4 @@
-module github.com/plutodemon/slog
+module github.com/plutodemon/llog
 
 go 1.21
 

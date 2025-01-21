@@ -1,4 +1,4 @@
-package slog
+package llog
 
 import (
 	"bytes"
@@ -607,7 +607,7 @@ func (b *LogBuffer) sendRequest(ctx context.Context, data []byte) error {
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("User-Agent", "slog/1.0")
+	req.Header.Set("User-Agent", "llog/1.0")
 
 	// 使用共享的 HTTP 客户端
 	httpClient.Timeout = time.Duration(b.server.Timeout) * time.Second
